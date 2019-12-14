@@ -2,20 +2,25 @@ import mongoose = require("mongoose");
 import { Product } from "./product.model";
 import { User } from "./user.model";
 
-export interface Item  extends mongoose.Document{
-    product:mongoose.Types.ObjectId|Product,
-    amount:number,
-    users: Array<User>|Array<mongoose.Types.ObjectId>
+export interface Item extends mongoose.Document {
+    product: mongoose.Types.ObjectId | Product,
+    amount: number,
+    users: Array<User> | Array<mongoose.Types.ObjectId>,
+    locationName: string,
 }
 
 const itemSchema = new mongoose.Schema({
-    product:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"Product"
+    product: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Product"
     },
-    amount:{
-        type:Number,
-        default:1
+    amount: {
+        type: Number,
+        default: 1
+    },
+    locationName: {
+        type: String,
+        required: true,
     },
     users: [
         {
@@ -25,4 +30,4 @@ const itemSchema = new mongoose.Schema({
     ]
 });
 
-export const Item = mongoose.model<Item>("Item",itemSchema);
+export const Item = mongoose.model<Item>("Item", itemSchema);
