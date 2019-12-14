@@ -5,7 +5,6 @@ export interface Table extends mongoose.Document{
     password:string,
     owner:mongoose.Types.ObjectId,
     users:Array<mongoose.Types.ObjectId>,
-    number: string,
     isActive: boolean,
     location:{name:string,longitude:number,latitude:number},
     matches(password:string):boolean,
@@ -15,10 +14,6 @@ const tableSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
-    },
-    number: {
-        type:String,
-        required:true
     },
     password: {
         type: String,

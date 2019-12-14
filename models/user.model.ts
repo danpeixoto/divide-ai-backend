@@ -8,6 +8,7 @@ export interface User extends mongoose.Document {
     email: string,
     password: string,
     imagePath: string,
+    number: string,
     items: Array<mongoose.Types.ObjectId>,
     dividedItems: Array<mongoose.Types.ObjectId>,
     location:{name:string,longitude:number,latitude:number},
@@ -46,6 +47,10 @@ const userSchema = new mongoose.Schema({
             ref: "DividedItem"
         }
     ],
+    number: {
+        type:String,
+        required:true
+    },
     location:{
         name:{
             type: String,
