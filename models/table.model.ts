@@ -6,6 +6,7 @@ export interface Table extends mongoose.Document{
     owner:mongoose.Types.ObjectId,
     users:Array<mongoose.Types.ObjectId>,
     number: string,
+    isActive: boolean,
     location:{name:string,longitude:number,latitude:number},
     matches(password:string):boolean,
 }
@@ -46,6 +47,10 @@ const tableSchema = new mongoose.Schema({
         },
         default: {},
     },
+    isActive:{
+        type: Boolean,
+        default: true,
+    }
 });
 
 tableSchema.methods.matches = function(password:string){
