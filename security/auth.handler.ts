@@ -6,7 +6,8 @@ export const authenticate: express.RequestHandler = (req, res, next) => {
     User.findByEmail(email, "+password")
         .then(user => {
             if (user && user.matches(password)) {
-                res.json({ name: user.name, email: user.email });
+                user.password = undefined;
+                res.json(user);
                 return next(false);
             } else {
                 res.status(403).json({error:"Invalid Credentials"});
