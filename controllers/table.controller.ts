@@ -38,7 +38,7 @@ class TableController extends ModelRouter<Table>{
                 if (table.matches(req.body.password)) {
                     return next();
                 } else {
-                    res.status(400).send("Wrong password.");
+                    res.status(403).send("Wrong password.");
                 }
             }).catch(next)
     }
